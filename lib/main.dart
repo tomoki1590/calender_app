@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'home_page.dart';
+import 'view/home_page.dart';
 
 void main() {
   initializeDateFormatting("ja-JP").then((_) => runApp(ProviderScope(
