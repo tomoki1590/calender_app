@@ -1,8 +1,6 @@
 import 'package:riverpod/riverpod.dart';
 
-final titleProvider = Provider<String>((ref) {
-  return 'カレンダー';
-});
-final scheduleProvider = Provider<String>((ref) {
-  return '';
+DateTime _foucused = DateTime.now();
+final FoucusedProvider = StateProvider((ref) {
+  return _foucused;
 });

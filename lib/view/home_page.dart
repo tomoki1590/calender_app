@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../provider.dart';
 import 'add_screen.dart';
 import 'editor_screen.dart';
 
@@ -14,12 +12,12 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     CalendarFormat format = CalendarFormat.month;
     DateTime _focusedDay = DateTime.now();
-    DateTime _selectedDay = DateTime.now();
+    DateTime? _selectedDay;
     return Scaffold(
       appBar: AppBar(
           title: Consumer(
               builder: (BuildContext context, WidgetRef ref, Widget? child) =>
-                  Text(ref.read(titleProvider)))),
+                  Text("カレンダー"))),
       body: Column(
         children: [
           TableCalendar(
@@ -40,10 +38,12 @@ class HomePage extends ConsumerWidget {
             selectedDayPredicate: (day) {
               return isSameDay(_selectedDay, day);
             },
+            onDaySelected: (selectedDay, focusedDay) {
+              if (!isSameDay(_selectedDay, selectedDay)) {}
+            },
             locale: "ja-JP",
             daysOfWeekStyle: DaysOfWeekStyle(
-              dowTextFormatter: (date, locale) =>
-                  DateFormat.E(locale).format(date)[0],
+              weekendStyle: TextStyle(color: Colors.red),
             ),
           ),
           ElevatedButton(
